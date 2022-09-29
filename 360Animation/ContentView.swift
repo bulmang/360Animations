@@ -8,12 +8,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State var isAnimating: Bool = false
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        VStack(spacing: 20) {
+            
+            RoundedRectangle(cornerRadius: isAnimating ? 50 : 25)
+                .frame(width: isAnimating ? 300 : 0 , height : 300 )
+                .animation(.spring(), value:  isAnimating)
+                .rotationEffect(Angle(degrees: isAnimating ? 360 : 0))
+                .foregroundColor(isAnimating ? .orange : .blue)
+            
+            Button("버튼을 눌러주세요.") {
+                withAnimation(Animation.default) {
+                    isAnimating.toggle()
+                }
+            }
+            .foregroundColor(.white)
+            .padding()
+            .background(.blue)
+            .cornerRadius(10)
+            .fontWeight(.bold)
         }
         .padding()
     }
