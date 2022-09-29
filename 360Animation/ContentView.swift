@@ -15,7 +15,7 @@ struct ContentView: View {
         VStack(spacing: 20) {
             
             RoundedRectangle(cornerRadius: isAnimating ? 50 : 25)
-                .frame(width: isAnimating ? 300 : 0 , height : 300 )
+                .frame(width: isAnimating ? 300 : 0 , height : isAnimating ? 360 : 0 )
                 .animation(.spring(), value:  isAnimating)
                 .rotationEffect(Angle(degrees: isAnimating ? 360 : 0))
                 .foregroundColor(isAnimating ? .orange : .blue)
